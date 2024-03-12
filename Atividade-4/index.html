@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descobrir Interruptores e Lâmpadas</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+
+    #container {
+        text-align: center;
+        flex-direction: column;
+        padding: 20px;
+        max-width: 800px; /* Aumenta a largura máxima do contêiner */
+        margin: auto; /* Centraliza o contêiner na tela */
+    }
+
+    #container p {
+        margin-bottom: 20px;
+    }
+
+    #resultado {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <p>
+        <h3>Aqui está uma maneira de resolver o problema:</h3>
+        1. Primeiro, ligue o primeiro interruptor e deixe-o ligado por alguns minutos para aquecer a lâmpada associada a ele.<br>
+        2. Depois de alguns minutos, desligue o primeiro interruptor e ligue o segundo interruptor.<br>
+        3. Em seguida, vá para a sala das lâmpadas.<br>
+        4. Agora, há três possibilidades:<br>
+           a) Se a lâmpada estiver acesa, então o segundo interruptor controla essa lâmpada.<br>
+           b) Se a lâmpada estiver apagada e estiver quente ao toque, então o primeiro interruptor controla essa lâmpada.<br>
+           c) Se a lâmpada estiver apagada e não estiver quente ao toque, então o terceiro interruptor controla essa lâmpada.<br>
+        Dessa forma, você consegue determinar qual interruptor controla cada lâmpada em apenas duas visitas à sala das lâmpadas.
+    </p>
+    <h2>Clique nos interruptores para simular o experimento</h2>
+    <button onclick="ligarInterruptor(this)">Interruptor 1</button>
+    <button onclick="ligarInterruptor(this)">Interruptor 2</button>
+    <button onclick="ligarInterruptor(this)">Interruptor 3</button>
+    <div id="resultado"></div>
+</div>
+
+<script>
+    // Função para simular o experimento
+    function ligarInterruptor(interruptor) {
+        // Desligar todos os interruptores
+        var todosInterruptores = document.querySelectorAll("button");
+        todosInterruptores.forEach(function(botao) {
+            botao.classList.remove("ligado");
+        });
+
+        // Ligar o interruptor clicado
+        interruptor.classList.add("ligado");
+
+        // Determinar qual lâmpada está associada ao interruptor clicado
+        var resultado = document.getElementById("resultado");
+        if (interruptor.textContent === "Interruptor 1") {
+            resultado.innerText = "O interruptor 1 controla a lâmpada que está aquecida.";
+        } else if (interruptor.textContent === "Interruptor 2") {
+            resultado.innerText = "O interruptor 2 controla a lâmpada que está acesa.";
+        } else {
+            resultado.innerText = "O interruptor 3 controla a lâmpada que está apagada e não está aquecida.";
+        }
+    }
+</script>
+</body>
+</html>
